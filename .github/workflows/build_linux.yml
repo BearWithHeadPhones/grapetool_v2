@@ -27,5 +27,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: grapetool_linux
-          path: /home/runner/work/grapetool_v2/grapetool_v2/dist/electron/grapetool-linux-x64
+          path: /home/runner/work/grapetool_v2/grapetool_v2/dist/electron/Packaged/grapetool-linux-x64
       - run: echo "🍏 This job's status is ${{ job.status }}."
