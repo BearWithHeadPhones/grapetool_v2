@@ -1,16 +1,17 @@
 name: Run UT
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+    branches: [$default-branch]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "21"
       - run: npm install
-      - run: npm install -g @quasar/cli
       - run: npm run test:unit:ci
       - run: echo "🍏 This job's status is ${{ job.status }}."
