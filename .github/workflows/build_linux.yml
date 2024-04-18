@@ -1,4 +1,4 @@
-name: UT
+name: Build Linux
 on:
   push:
     branches: ["main"]
@@ -22,5 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm install
-      - run: npm run test:unit:ci
+      - run: npm install -g @quasar/cli
+      - run: quasar build --mode electron
       - run: echo "🍏 This job's status is ${{ job.status }}."
