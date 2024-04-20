@@ -8,9 +8,9 @@
 
       <q-space />
 
-      <q-btn dense flat icon="minimize" @click="minimize" />
-      <q-btn dense flat icon="crop_square" @click="toggleMaximize" />
-      <q-btn dense flat icon="close" @click="closeApp" />
+      <q-btn id="minimize" dense flat icon="minimize" @click="minimize" />
+      <q-btn id="toggleMaximize" dense flat icon="crop_square" @click="toggleMaximize" />
+      <q-btn id="close" dense flat icon="close" @click="closeApp" />
     </q-bar>
     <BookmarksToggle @toggle-bookmarks="$emit('toggle-bookmarks')" />
   </q-header>
