@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
 
 installQuasarPlugin();
+app.use(pinia);
 
 describe("BookmarksToggle", () => {
   it("shall emit toggle-bokmarks when clicked", async () => {

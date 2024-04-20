@@ -5,6 +5,7 @@ import NavigationBar from "components/navigation_bar/NavigationBar.vue";
 import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
 
 installQuasarPlugin();
+app.use(pinia);
 
 describe("NavigationBar", () => {
   it("shall emit toggle-bokmarks when BookmarksToggle is clicked", async () => {
