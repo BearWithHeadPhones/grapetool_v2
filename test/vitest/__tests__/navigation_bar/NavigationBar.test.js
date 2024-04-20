@@ -3,9 +3,10 @@ import { mount } from "@vue/test-utils";
 import { describe, expect, it, vi, test } from "vitest";
 import NavigationBar from "components/navigation_bar/NavigationBar.vue";
 import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
+import { setActivePinia, createPinia } from "pinia";
 
+setActivePinia(createPinia());
 installQuasarPlugin();
-app.use(pinia);
 
 describe("NavigationBar", () => {
   it("shall emit toggle-bokmarks when BookmarksToggle is clicked", async () => {
