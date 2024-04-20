@@ -4,7 +4,8 @@
       <q-icon class="text-dark" size="sm">
         <img src="~assets/favicon-32x32.png" />
       </q-icon>
-      <div>grapetool</div>
+      <div style="color:lightgray;">grapetool</div>
+      <FileMenu />
 
       <q-space />
 
@@ -18,6 +19,8 @@
 
 <script setup>
 import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
+import FileMenu from "src/components/navigation_bar/FileMenu.vue";
+
 defineEmits(["toggle-bookmarks"]);
 
 function minimize() {

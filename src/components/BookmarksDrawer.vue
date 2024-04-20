@@ -1,17 +1,7 @@
 <template>
-  <q-drawer
-    padding
-    v-model="model"
-    bordered
-    :width="drawerWidth"
-    :breakpoint="700"
-    class="text-white"
-    style="background-color: #24759c"
-  >
-    <div
-      v-touch-pan.preserveCursor.prevent.mouse.horizontal="resizeDrawer"
-      class="q-drawer__resizer"
-    ></div>
+  <q-drawer padding v-model="model" bordered :width="width" :breakpoint="700" class="text-white"
+    style="background-color: #24759c">
+    <div v-touch-pan.preserveCursor.prevent.mouse.horizontal="resizeDrawer" class="q-drawer__resizer"></div>
     <q-scroll-area class="fit">
       <div class="q-pa-sm">
         <div v-for="n in 1000" :key="n">Drawer {{ n }} / 50</div>
@@ -21,10 +11,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useWindowStore } from 'stores/window-store'
+const windowStore = useWindowStore();
 
 let initialDrawerWidth;
 const drawerWidth = ref(200);
+
+const width = computed(() => {
+  let maxWidth = windowStore.getInnerWidth / 4
+  if (drawerWidth.value > maxWidth) {
+    return maxWidth
+  }
+  return drawerWidth.value
+})
 
 function resizeDrawer(ev) {
   if (ev.isFirst === true) {
@@ -46,6 +46,7 @@ const model = defineModel();
   background-color: #3f52b5;
   cursor: ew-resize;
 }
+
 .q-drawer__resizer:after {
   content: "";
   position: absolute;

@@ -1,13 +1,14 @@
 <template>
-  <q-btn
-    :ripple="{ center: true }"
-    color="bg-indigo"
-    label="Bookmarks"
-    no-caps
-    @click="$emit('toggle-bookmarks')"
-  />
+  <q-btn flat dense icon="menu" @click="$emit('toggle-bookmarks')" />
 </template>
 
 <script setup>
 defineEmits(["toggle-bookmarks"]);
 </script>
+
+
+
+
+
+
+<q-btn flat @click="leftDrawerOpen = !leftDrawerOpen" round dense icon="menu" />

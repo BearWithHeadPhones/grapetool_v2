@@ -1,5 +1,7 @@
 import { contextBridge } from "electron";
 import { BrowserWindow } from "@electron/remote";
+var fs = require("fs");
+import path from "path";
 
 contextBridge.exposeInMainWorld("myWindowAPI", {
   minimize() {
@@ -18,5 +20,10 @@ contextBridge.exposeInMainWorld("myWindowAPI", {
 
   close() {
     BrowserWindow.getFocusedWindow().close();
+  },
+
+  readFile(filepath) {
+    //console.log(path.resolve(__dirname, process.env.QUASAR_PUBLIC_FOLDER));
+    return fs.readFileSync(filepath).toString();
   },
 });
