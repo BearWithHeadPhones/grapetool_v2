@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
-import FileMenu from "src/components/navigation_bar/FileMenu.vue";
+import BookmarksToggle from "./BookmarksToggle.vue";
+import FileMenu from "./FileMenu.vue";
 
 defineEmits(["toggle-bookmarks"]);
 

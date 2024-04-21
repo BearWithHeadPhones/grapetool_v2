@@ -1,5 +1,6 @@
 <template>
-  <router-view />
+  <router-view style="max-height: 100vh;
+    overflow-x: scroll;" />
 </template>
 
 <script setup>

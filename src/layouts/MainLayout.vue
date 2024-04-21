@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="padding: 0; overflow: hidden">
+  <div class="q-pa-md" style="padding: 0; overflow-y: hidden">
     <q-layout view="hHh LpR fFf">
       <q-page-container style="padding-right: 0">
         <router-view />

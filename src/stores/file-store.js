@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
+import { useWorkSpaceStore } from "stores/workspace-store";
 
 export const useFileStore = defineStore("fileStore", {
   state: () => ({
     originalFileContent: "",
-    fileContentSplitted: [{ index: 1, line: "" }],
   }),
   getters: {
     getOriginalFileContent: (state) => state.originalFileContent,
@@ -12,15 +12,22 @@ export const useFileStore = defineStore("fileStore", {
   actions: {
     setOriginalFileContent(content) {
       this.originalFileContent = content;
+      const workSpaceStore = useWorkSpaceStore();
 
-      this.fileContentSplitted = content.split("\n").map((line, index) => {
-        return {
-          index: index + 1,
-          line: line.trim(),
-        };
-      });
+      workSpaceStore.setWorkspaces([
+        {
+          index: 0,
+          label: "root",
+          content: content.split("\n").map((line, index) => {
+            return {
+              index: index + 1,
+              line: line.trim(),
+            };
+          }),
+        },
+      ]);
 
-      console.log(this.fileContentSplitted);
+      console.log(workSpaceStore.getWorkspaces);
     },
   },
 });
