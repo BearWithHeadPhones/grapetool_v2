@@ -7,8 +7,6 @@
   </div>
 </template>
 
-
-
 <script setup>
 import WorkSpaceTabs from './WorkSpaceTabs.vue';
 import WorkSpacePanel from './WorkSpacePanel.vue';

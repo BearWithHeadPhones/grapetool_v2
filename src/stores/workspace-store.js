@@ -36,7 +36,6 @@ export const useWorkSpaceStore = defineStore("workSpaceStore", {
       this.workspaces = workspaces;
     },
     addWorkspace(workspace) {
-      console.log(workspace);
       this.workspaces.push(workspace);
     },
     setCurrentWorkspaceIndex(index) {

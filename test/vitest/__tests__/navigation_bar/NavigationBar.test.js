@@ -3,6 +3,7 @@ import { mount } from "@vue/test-utils";
 import { describe, expect, it, vi, test } from "vitest";
 import NavigationBar from "components/navigation_bar/NavigationBar.vue";
 import BookmarksToggle from "components/navigation_bar/BookmarksToggle.vue";
+import EditMenu from "components/navigation_bar/EditMenu.vue";
 import { setActivePinia, createPinia } from "pinia";
 
 setActivePinia(createPinia());
@@ -13,6 +14,13 @@ describe("NavigationBar", () => {
     const wrapper = mount(NavigationBar);
     await wrapper.findComponent(BookmarksToggle).trigger("click");
     expect(wrapper.emitted("toggle-bookmarks")).toBeTruthy();
+  });
+
+  it("shall emit toggle-grep when EditMenu grep is clicked", async () => {
+    const wrapper = mount(NavigationBar);
+    const editMenuWrapper = wrapper.findComponent(EditMenu);
+    editMenuWrapper.vm.$emit("toggle-grep");
+    expect(wrapper.emitted("toggle-grep")).toBeTruthy();
   });
 
   test.each([["minimize"], ["toggleMaximize"], ["close"]])(

@@ -23,7 +23,7 @@ import { ref } from "vue";
 
 const grepPrompt = defineModel()
 const grepPhrase = ref("");
-import { grepImpl } from "./GrepPrompt.js";
+import { grepImpl } from "./grep.js";
 
 function grep() {
   grepImpl(grepPhrase.value);
