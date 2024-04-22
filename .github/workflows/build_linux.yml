@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm install
+      - run: npm ci
       - run: npm install -g @quasar/cli
       - run: quasar build --mode electron
       #- uses: actions/upload-artifact@v4
