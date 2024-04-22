@@ -17,9 +17,11 @@ jobs:
         run: |
           npm ci
           npm install -g @quasar/cli
-          npx playwright install --with-deps
+          npx playwright install
       - name: Bild app
-        run: quasar build --mode electron
+        run: |
+          quasar build --mode electron
+          ls /home/runner/work/grapetool_v2/grapetool_v2/dist/electron/UnPackaged
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
