@@ -12,7 +12,16 @@ const { globalIndex, localIndex, line } = toRefs(props)
 
 const entryLine = computed(() => {
 
-  return "" + globalIndex.value + "|" + localIndex.value + "|" + setLineColor("error", line, "red");
+
+  let numbersPanel = '<span style="color:grey; background-color:#e0e0e0">' +
+
+    " " + (globalIndex.value + 1) +
+    "|" +
+    localIndex.value +
+    " " +
+    "</span>"
+
+  return numbersPanel + setLineColor("error", line, "red");
 })
 
 function setLineColor(phrase, line, color) {

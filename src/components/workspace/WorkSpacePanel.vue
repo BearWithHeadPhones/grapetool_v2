@@ -2,13 +2,13 @@
   <q-virtual-scroll type="table" q-virtual-scroll--with-prev v-if="workspace" q-page-sticky component="q-list"
     :style="height" :items="workspace.content" dense @virtual-scroll="onVirtualScroll" v-slot="{ item, index }">
     <q-item clickable :key="index" style="min-height: 0; padding: 0; line-height: 1">
-      <WorkSpaceLine :globalIndex="item.index" :localIndex="item.index" :line="item.line" />
+      <WorkSpaceLine :style="fontSize" :globalIndex="index" :localIndex="item.index" :line="item.line" />
     </q-item>
   </q-virtual-scroll>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useWindowStore } from 'stores/window-store'
 import WorkSpaceLine from "./WorkSpaceLine.vue";
 
@@ -17,9 +17,39 @@ const height = computed(() => {
   return "height: " + (windowStore.getInnerHeight - 126) + "px;";
 })
 
+
+const fontSize = computed(() => {
+  return "font-size: " + fontSizeNumber.value + "px";
+})
+
+let fontSizeNumber = ref(14);
+
+function calculateFontSize(modify) {
+  if (modify) {
+    fontSizeNumber.value++
+    if (fontSizeNumber.value > 30) {
+      fontSizeNumber.value = 30;
+    }
+  }
+  else {
+    fontSizeNumber.value--
+    if (fontSizeNumber.value < 12) {
+      fontSizeNumber.value = 12
+    }
+  }
+}
+
 const props = defineProps({
   workspace: []
 })
+
+
+window.addEventListener('mousewheel', (e) => {
+  if (e.ctrlKey) {
+    calculateFontSize(e.deltaY < 0);
+  }
+}
+);
 </script>
 
 <style>
