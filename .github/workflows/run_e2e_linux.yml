@@ -20,6 +20,8 @@ jobs:
           npx playwright install --with-deps
       - name: Bild app
         run: quasar build --mode electron
+      - name: check dir
+        run: ls /home/runner/work/grapetool_v2/grapetool_v2/dist/electron/UnPackaged
       - name: Run Playwright tests
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- npx playwright test
       - uses: actions/upload-artifact@v4
