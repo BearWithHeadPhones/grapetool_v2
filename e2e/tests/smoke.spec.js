@@ -30,7 +30,9 @@ async function startApp() {
 
 test("appStarts", async () => {
   const electronApp = await electron.launch({
-    args: ["../dist/electron/UnPackaged/electron-main.js"],
+    args: [
+      "/home/runner/work/grapetool_v2/grapetool_v2/dist/electron/dist/electron/UnPackaged/electron-main.js",
+    ],
   });
   const window = await electronApp.firstWindow();
   await electronApp.close();
