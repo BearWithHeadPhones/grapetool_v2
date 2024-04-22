@@ -30,6 +30,7 @@ jobs:
         working-directory: /home/runner/work/grapetool_v2/grapetool_v2/e2e
         run: |
           pwd
-          npm install
+          npm ci
+          npx playwright install --with-deps
           npx playwright test
           echo "🍏 This job's status is ${{ job.status }}."
