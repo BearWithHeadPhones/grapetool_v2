@@ -5,10 +5,3 @@
 <script setup>
 defineEmits(["toggle-bookmarks"]);
 </script>
-
-
-
-
-
-
-<q-btn flat @click="leftDrawerOpen = !leftDrawerOpen" round dense icon="menu" />

@@ -13,7 +13,7 @@
       <q-btn id="toggleMaximize" dense flat icon="crop_square" @click="toggleMaximize" />
       <q-btn id="close" dense flat icon="close" @click="closeApp" />
     </q-bar>
-    <BookmarksToggle @toggle-bookmarks="$emit('toggle-grep')" />
+    <BookmarksToggle @toggle-bookmarks="$emit('toggle-bookmarks')" />
   </q-header>
 </template>
 
