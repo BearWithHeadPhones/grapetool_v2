@@ -4,33 +4,27 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
-  build:
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: Install deps
+          node-version: 20.x
+      - name: Install dependencies
         run: |
-          npm install
-          npm install -g @quasar/cli
-          quasar build --mode electron
-      - name: Run tests
-        working-directory: /home/runner/work/grapetool_v2/grapetool_v2/e2e
-        run: |
-          pwd
           npm ci
+          npm install -g @quasar/cli
           npx playwright install --with-deps
-          npx playwright test
-          echo "🍏 This job's status is ${{ job.status }}."
+      - name: Bild app
+        run: quasar build --mode electron
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
