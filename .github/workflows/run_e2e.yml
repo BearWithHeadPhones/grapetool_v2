@@ -1,4 +1,4 @@
-name: Build Linux
+name: E2E
 on:
   push:
     branches: ["main"]
@@ -21,11 +21,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm install
-      - run: npm install -g @quasar/cli
-      - run: quasar build --mode electron
-      - name: Run E2E
+      - name: Install deps
+        run: |
+          npm install
+          npm install -g @quasar/cli
+          quasar build --mode electron
+      - name: Run tests
         working-directory: /home/runner/work/grapetool_v2/grapetool_v2/e2e
-        run: npm install
-        run: npx playwright test
-        run: echo "🍏 This job's status is ${{ job.status }}."
+        run: |
+          npm install
+          npx playwright test
+          echo "🍏 This job's status is ${{ job.status }}."
