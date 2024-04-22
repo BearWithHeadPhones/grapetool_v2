@@ -27,6 +27,8 @@ export const useFileStore = defineStore("fileStore", {
         },
       ]);
 
+      workSpaceStore.setCurrentWorkspaceIndex(0);
+
       console.log(workSpaceStore.getWorkspaces);
     },
   },

@@ -20,16 +20,27 @@ export const useWorkSpaceStore = defineStore("workSpaceStore", {
         ],
       },
     ],
+    currentWorkspaceIndex: 0,
   }),
   getters: {
     getWorkspaces: (state) => state.workspaces,
+    getCurrentWorkspaceIndex: (state) => state.currentWorkspaceIndex,
+    getCurrentWorkspace: (state) =>
+      state.workspaces[state.currentWorkspaceIndex],
+    getCurrentLabel: (state) =>
+      state.workspaces[state.currentWorkspaceIndex].label,
+    getHighestIndex: (state) => state.workspaces.at(-1).index,
   },
   actions: {
     setWorkspaces(workspaces) {
       this.workspaces = workspaces;
     },
     addWorkspace(workspace) {
+      console.log(workspace);
       this.workspaces.push(workspace);
+    },
+    setCurrentWorkspaceIndex(index) {
+      this.currentWorkspaceIndex = index;
     },
   },
 });

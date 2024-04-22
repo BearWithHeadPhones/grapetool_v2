@@ -6,22 +6,23 @@
       </q-icon>
       <div style="color:lightgray;">grapetool</div>
       <FileMenu />
-
+      <EditMenu @toggle-grep="$emit('toggle-grep')" />
       <q-space />
 
       <q-btn id="minimize" dense flat icon="minimize" @click="minimize" />
       <q-btn id="toggleMaximize" dense flat icon="crop_square" @click="toggleMaximize" />
       <q-btn id="close" dense flat icon="close" @click="closeApp" />
     </q-bar>
-    <BookmarksToggle @toggle-bookmarks="$emit('toggle-bookmarks')" />
+    <BookmarksToggle @toggle-bookmarks="$emit('toggle-grep')" />
   </q-header>
 </template>
 
 <script setup>
 import BookmarksToggle from "./BookmarksToggle.vue";
 import FileMenu from "./FileMenu.vue";
+import EditMenu from "./EditMenu.vue";
 
-defineEmits(["toggle-bookmarks"]);
+defineEmits(["toggle-bookmarks", "toggle-grep"]);
 
 function minimize() {
   window.myWindowAPI?.minimize();
