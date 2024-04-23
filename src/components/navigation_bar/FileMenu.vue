@@ -1,10 +1,10 @@
 <template>
   <q-file v-if="true" ref="filePicker" v-model="file" style="width: 0" />
-  <div class="cursor-pointer non-selectable q-electron-drag--exception">
+  <div id="fileMenu" class="cursor-pointer non-selectable q-electron-drag--exception">
     File
     <q-menu>
       <q-list dense style="min-width: 100px">
-        <q-item clickable @click="pickFile" v-close-popup>
+        <q-item id="open" clickable @click="pickFile" v-close-popup>
           <q-item-section>Open...</q-item-section>
         </q-item>
       </q-list>
