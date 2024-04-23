@@ -2,7 +2,7 @@
   <q-dialog v-model="grepPrompt" persistent>
     <q-card id="grepPrompt" style="min-width: 350px">
       <q-card-section class="q-pt-none">
-        <q-input label="Grep" dense v-model="grepPhrase" :autofocus @keyup.enter="grep"
+        <q-input label="Grep" dense v-model="grepPhrase" :autofocus="true" @keyup.enter="grep"
           @keyup.esc="grepPrompt = false" />
       </q-card-section>
 

@@ -1,6 +1,5 @@
 import { GrapetoolApp } from "app/e2e/environment/GrapetoolApp.js";
 const { test, expect } = require("@playwright/test");
-var path = require("path");
 
 test("smoke", async () => {
   const grapetoolApp = await GrapetoolApp.initialize();
