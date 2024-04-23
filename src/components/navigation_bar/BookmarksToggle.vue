@@ -1,5 +1,5 @@
 <template>
-  <q-btn flat dense icon="menu" @click="$emit('toggle-bookmarks')" />
+  <q-btn id="bookmarksToggle" flat dense icon="menu" @click="$emit('toggle-bookmarks')" />
 </template>
 
 <script setup>

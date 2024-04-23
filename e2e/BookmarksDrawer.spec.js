@@ -1,10 +1,13 @@
 const { _electron: electron } = require("playwright");
 const { test, expect } = require("@playwright/test");
 
-test("appStarts", async () => {
+test("close bookmarks drawer", async () => {
   const electronApp = await electron.launch({
     args: [process.cwd() + "/dist/electron/UnPackaged/electron-main.mjs"],
   });
   const window = await electronApp.firstWindow();
+  await window.waitForLoadState();
+  await window.click("#bookmarksToggle");
+  expect(window.locator("#bookmarksDrawer")).toBeHidden();
   await electronApp.close();
 });
