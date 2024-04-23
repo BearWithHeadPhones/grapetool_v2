@@ -17,6 +17,13 @@ export class GrapetoolApp {
     await fileChooser.setFiles(process.cwd() + "/e2e/test-files", file);
   }
 
+  async grep(phrase) {
+    await this.window.keyboard.press("Control+g");
+    await expect(this.window.getByLabel("Grep")).toBeFocused();
+    await this.window.keyboard.insertText(phrase);
+    await this.window.keyboard.press("Enter");
+  }
+
   static async initialize() {
     const application = await electron.launch({
       args: [process.cwd() + "/dist/electron/UnPackaged/electron-main.mjs"],
