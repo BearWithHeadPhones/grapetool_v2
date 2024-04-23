@@ -1,7 +1,7 @@
 import { setActivePinia, createPinia } from "pinia";
 import { useWorkSpaceStore } from "src/stores/workspace-store";
 import { grepImpl } from "src/components/prompts/grep/grep";
-import { describe, beforeEach, expect, it, vi, test } from "vitest";
+import { describe, beforeEach, expect, test } from "vitest";
 
 describe("Grep", () => {
   beforeEach(() => {
