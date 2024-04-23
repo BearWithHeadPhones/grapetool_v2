@@ -35,7 +35,7 @@ describe("Grep", () => {
       2,
       {
         index: 2,
-        label: "root error",
+        label: "root>error",
         content: [
           { index: 1, line: "error" },
           { index: 3, line: "error" },
@@ -48,7 +48,7 @@ describe("Grep", () => {
       2,
       {
         index: 2,
-        label: "grep error",
+        label: "grep>error",
         content: [],
       },
     ],
@@ -58,7 +58,7 @@ describe("Grep", () => {
       2,
       {
         index: 2,
-        label: "root warning",
+        label: "root>warning",
         content: [{ index: 2, line: "warning" }],
       },
     ],

@@ -32,7 +32,7 @@ export const useFileStore = defineStore("fileStore", {
       this.originalFileContent = content;
       const workSpaceStore = useWorkSpaceStore();
 
-      workSpaceStore.setWorkspaces([createWorkspace(content, true)]);
+      workSpaceStore.setWorkspaces([createWorkspace(content, false)]);
 
       workSpaceStore.setCurrentWorkspaceIndex(0);
     },
