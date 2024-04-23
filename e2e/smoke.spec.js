@@ -1,26 +1,17 @@
-const { _electron: electron } = require("playwright");
-const { test, expect, keyboard } = require("@playwright/test");
+import { GrapetoolApp } from "app/e2e/environment/GrapetoolApp.js";
+const { test, expect } = require("@playwright/test");
 var path = require("path");
 
 test("smoke", async () => {
-  const electronApp = await electron.launch({
-    args: [process.cwd() + "/dist/electron/UnPackaged/electron-main.mjs"],
-  });
-  const window = await electronApp.firstWindow();
-  await window.waitForLoadState();
-  await window.click("#fileMenu");
-  await expect(window.locator("#open")).toBeVisible();
-  const fileChooserPromise = window.waitForEvent("filechooser");
-  await window.click("#open");
-  const fileChooser = await fileChooserPromise;
-  await fileChooser.setFiles(path.join(__dirname + "/test-files", "test.log"));
-  await window.keyboard.press("Control+g");
-  let grepInput = await window.getByLabel("Grep");
+  const grapetoolApp = await GrapetoolApp.initialize();
+  await grapetoolApp.openFile("test.log");
+  await grapetoolApp.window.keyboard.press("Control+g");
+  let grepInput = await grapetoolApp.window.getByLabel("Grep");
   await expect(grepInput).toBeVisible();
   await grepInput.fill("error");
-  await window.keyboard.press("Enter");
+  await grapetoolApp.window.keyboard.press("Enter");
   await expect(
-    window.locator('div.q-tab__label:has-text("root error")'),
+    grapetoolApp.window.locator('div.q-tab__label:has-text("root error")'),
   ).toBeVisible();
-  await electronApp.close();
+  await grapetoolApp.application.close();
 });

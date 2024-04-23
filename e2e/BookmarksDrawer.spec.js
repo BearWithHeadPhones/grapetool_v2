@@ -1,13 +1,9 @@
-const { _electron: electron } = require("playwright");
+import { GrapetoolApp } from "app/e2e/environment/GrapetoolApp.js";
 const { test, expect } = require("@playwright/test");
 
 test("toggle bookmarks drawer", async () => {
-  const electronApp = await electron.launch({
-    args: [process.cwd() + "/dist/electron/UnPackaged/electron-main.mjs"],
-  });
-  const window = await electronApp.firstWindow();
-  await window.waitForLoadState();
-  await window.click("#bookmarksToggle");
-  await expect(window.locator("#bookmarksDrawer")).toBeHidden();
-  await electronApp.close();
+  const grapetoolApp = await GrapetoolApp.initialize();
+  await grapetoolApp.window.click("#bookmarksToggle");
+  await expect(grapetoolApp.window.locator("#bookmarksDrawer")).toBeHidden();
+  await grapetoolApp.application.close();
 });
