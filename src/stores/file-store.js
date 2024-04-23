@@ -14,22 +14,26 @@ export const useFileStore = defineStore("fileStore", {
       this.originalFileContent = content;
       const workSpaceStore = useWorkSpaceStore();
 
-      workSpaceStore.setWorkspaces([
-        {
-          index: 0,
-          label: "root",
-          content: content.split("\n").map((line, index) => {
-            return {
-              index: index + 1,
-              line: line.trim(),
-            };
-          }),
-        },
-      ]);
+      content = content.split("\n");
+      let sort = true;
+      if (sort) {
+        content = content.sort();
+      }
+      let workspace = {
+        index: 0,
+        label: "root",
+        content: content.map((line, index) => {
+          return {
+            index: index + 1,
+            line: line.trim(),
+          };
+        }),
+      };
+
+      workspace.content.sort();
+      workSpaceStore.setWorkspaces([workspace]);
 
       workSpaceStore.setCurrentWorkspaceIndex(0);
-
-      console.log(workSpaceStore.getWorkspaces);
     },
   },
 });

@@ -7,7 +7,7 @@ export function grepImpl(phrase) {
   let newIndex = workSpaceStore.getHighestIndex + 1;
   workSpaceStore.addWorkspace({
     index: newIndex,
-    label: workSpaceStore.getCurrentLabel + " " + phrase,
+    label: workSpaceStore.getCurrentLabel + ">" + phrase,
     content: workSpaceStore.getCurrentWorkspace.content.filter((elem) => {
       return phraseRegexp.test(elem.line);
     }),

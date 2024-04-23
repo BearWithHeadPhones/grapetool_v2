@@ -6,7 +6,7 @@ test("smoke", async () => {
   await grapetoolApp.openFile("test.log");
   await grapetoolApp.grep("error");
   await expect(
-    grapetoolApp.window.locator('div.q-tab__label:has-text("root error")'),
+    grapetoolApp.window.locator('div.q-tab__label:has-text("root>error")'),
   ).toBeVisible();
   await grapetoolApp.application.close();
 });
