@@ -24,6 +24,7 @@ import { grepImpl } from "./grep.js";
 
 function grep() {
   grepImpl(grepPhrase.value);
+  grepPhrase.value = "";
   grepPrompt.value = false;
 }
 

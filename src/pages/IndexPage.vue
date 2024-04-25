@@ -21,7 +21,7 @@ import { ref, onMounted } from "vue";
 const bookmarksOpened = ref(true);
 const grepPrompt = ref(false);
 import NavigationBar from "components/navigation_bar/NavigationBar.vue";
-import BookmarksDrawer from "components/BookmarksDrawer.vue";
+import BookmarksDrawer from "src/components/bookmarks/BookmarksDrawer.vue";
 import WorkSpace from "components/workspace/WorkSpace.vue";
 import GrepPrompt from "src/components/prompts/grep/GrepPrompt.vue";
 
