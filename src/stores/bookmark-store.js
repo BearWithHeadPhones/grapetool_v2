@@ -6,7 +6,7 @@ export const useBookmarkStore = defineStore("bookmarkStore", {
       {
         emoji: "😊",
         name: "customBookmark------------------------------------------------------------------------------------------------",
-        workspaceItem: { index: 1, line: "costam " },
+        workspaceItem: { index: 1000, line: "costam " },
       },
     ],
   }),

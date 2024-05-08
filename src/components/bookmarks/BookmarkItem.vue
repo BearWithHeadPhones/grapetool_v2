@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable v-ripple @click="$emit('bookmark-triggered', bookmark.workspaceItem.line)"
+  <q-item clickable v-ripple @click="$emit('bookmark-triggered', bookmark.workspaceItem.index)"
     style="min-height: 0; padding: 0; margin: 0; line-height: 1">
     <q-item-section>
       <pre v-html="computedBookmark" style="margin: 0.4px; color: #f4f6f6" />

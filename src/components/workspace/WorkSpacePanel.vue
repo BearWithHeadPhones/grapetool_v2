@@ -1,8 +1,10 @@
 <template>
-  <q-virtual-scroll type="table" q-virtual-scroll--with-prev v-if="workspace" q-page-sticky component="q-list"
-    :style="height" :items="workspace.content" dense @virtual-scroll="onVirtualScroll" v-slot="{ item, index }">
+  <q-virtual-scroll ref="workspacePanelRef" type="table" q-virtual-scroll--with-prev v-if="workspace" q-page-sticky
+    component="q-list" :style="height" :items="workspace.content" dense @virtual-scroll="onVirtualScroll"
+    v-slot="{ item, index }">
     <q-item clickable :key="index" style="min-height: 0; padding: 0; line-height: 1">
-      <WorkSpaceLine :style="fontSize" :globalIndex="index" :localIndex="item.index" :line="item.line" />
+      <WorkSpaceLine :highlight="index === bookmarkLine" :style="fontSize" :globalIndex="index" :localIndex="item.index"
+        :line="item.line" />
     </q-item>
   </q-virtual-scroll>
 </template>
@@ -12,11 +14,20 @@ import { computed, ref } from "vue";
 import { useWindowStore } from 'stores/window-store'
 import WorkSpaceLine from "./WorkSpaceLine.vue";
 
+const workspacePanelRef = ref(null)
+const bookmarkLine = ref(-1)
 const windowStore = useWindowStore()
 const height = computed(() => {
   return "height: " + (windowStore.getInnerHeight - 126) + "px;";
 })
 
+function scrollTo(index) {
+  bookmarkLine.value = index;
+  workspacePanelRef.value.scrollTo(index, "center");
+}
+defineExpose({
+  scrollTo
+});
 
 const fontSize = computed(() => {
   return "font-size: " + fontSizeNumber.value + "px";

@@ -1,21 +1,24 @@
 <template>
-  <pre class="text-left" style="white-space: pre; margin: 0" v-html="entryLine" />
+  <pre :class="{ 'bg-indigo text-white': highlight }" class="text-left" style="white-space: pre; margin: 0"
+    v-html="entryLine" />
 </template>
 <script setup>
 import { computed, toRefs } from "vue";
 const props = defineProps({
   globalIndex: Number,
   localIndex: Number,
-  line: String
+  line: String,
+  highlight: Boolean
 })
-const { globalIndex, localIndex, line } = toRefs(props)
+const { globalIndex, localIndex, line, highlight } = toRefs(props)
 
 const entryLine = computed(() => {
 
 
-  let numbersPanel = '<span style="color:grey; background-color:#e0e0e0">' +
 
-    " " + (globalIndex.value + 1) +
+  let numbersPanel = (highlight.value ? '<span style="color:white; background-color:#3F51B5">' : '<span style="color:grey; background-color:#e0e0e0">') +
+
+    " " + (globalIndex.value) +
     "|" +
     localIndex.value +
     " " +
