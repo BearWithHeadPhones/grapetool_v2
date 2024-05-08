@@ -14,7 +14,10 @@ export class GrapetoolApp {
     const fileChooserPromise = this.window.waitForEvent("filechooser");
     await this.window.click("#open");
     const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles(process.cwd() + "/e2e/test-files", file);
+    console.log(path.join(process.cwd(), "e2e", "test-files", file));
+    await fileChooser.setFiles(
+      path.join(process.cwd(), "e2e", "test-files", file),
+    );
   }
 
   async grep(phrase) {
