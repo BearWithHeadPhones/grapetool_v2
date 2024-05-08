@@ -8,6 +8,7 @@ function createWorkspace(content, sort) {
   }
   let workspace = {
     index: 0,
+    greps: [],
     label: "root",
     content: content.map((line, index) => {
       return {

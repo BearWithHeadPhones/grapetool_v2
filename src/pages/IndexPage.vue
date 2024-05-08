@@ -1,8 +1,8 @@
 <template>
   <q-page flex>
     <NavigationBar @toggle-bookmarks="bookmarksOpened = !bookmarksOpened" @toggle-grep="grepPrompt = true" />
-    <BookmarksDrawer v-model="bookmarksOpened" />
-    <WorkSpace />
+    <BookmarksDrawer v-model="bookmarksOpened" @bookmark-triggered="(index) => executeScroll(index)" />
+    <WorkSpace ref="workspaceRef" />
     <GrepPrompt v-model="grepPrompt" />
     <q-footer ref="foota">
       <q-bar dense class="bg-black text-grey">
@@ -24,7 +24,12 @@ import NavigationBar from "components/navigation_bar/NavigationBar.vue";
 import BookmarksDrawer from "src/components/bookmarks/BookmarksDrawer.vue";
 import WorkSpace from "components/workspace/WorkSpace.vue";
 import GrepPrompt from "src/components/prompts/grep/GrepPrompt.vue";
+const workspaceRef = ref()
 
+function executeScroll(index) {
+  console.log("executeScroll" + index);
+  workspaceRef.value.scrollTo(index);
+}
 window.addEventListener('keydown', (e) => {
   if (e.key === "g" && (e.ctrlKey || e.metaKey)) {
     e.preventDefault(); // present "Save Page" from getting triggered.

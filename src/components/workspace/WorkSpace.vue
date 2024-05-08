@@ -2,7 +2,7 @@
   <div class="container" style="overflow-x: auto;">
     <WorkSpaceTabs v-model="index" :workspaces="workSpaceStore.getWorkspaces" />
     <q-separator inset />
-    <WorkSpacePanel :workspace="workSpaceStore.getCurrentWorkspace" />
+    <WorkSpacePanel ref="workspacePanelRef" :workspace="workSpaceStore.getCurrentWorkspace" />
 
   </div>
 </template>
@@ -13,7 +13,13 @@ import WorkSpacePanel from './WorkSpacePanel.vue';
 import { useWorkSpaceStore } from 'stores/workspace-store'
 import { ref, computed } from 'vue'
 const workSpaceStore = useWorkSpaceStore()
-
+const workspacePanelRef = ref()
+function scrollTo(index) {
+  workspacePanelRef.value.scrollTo(index);
+}
+defineExpose({
+  scrollTo
+})
 const index = computed({
   get() {
     return workSpaceStore.getCurrentWorkspaceIndex
